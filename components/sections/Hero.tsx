@@ -43,26 +43,10 @@ export default function Hero() {
       <div className="hero-wash tint" aria-hidden />
       <div className="hero-wash ramp" aria-hidden />
 
-      {/* thin white arc */}
-      <svg
-        className="hero-arc"
-        viewBox="0 0 1440 900"
-        fill="none"
-        preserveAspectRatio="xMidYMid slice"
-        aria-hidden
-      >
-        <ellipse cx="640" cy="470" rx="268" ry="430" transform="rotate(-13 640 470)" />
-        <ellipse cx="700" cy="520" rx="150" ry="360" transform="rotate(9 700 520)" opacity="0.5" />
-      </svg>
-
       {/* content weighted to bottom */}
       <div className="relative z-10 flex min-h-[100svh] flex-col justify-end">
         <div className="mx-auto w-full max-w-[1400px] px-4 pb-14 pt-28 sm:px-10 sm:pb-20 lg:px-14 lg:pb-24 sm:pt-32">
-          <Reveal y={18}>
-            <span className="eyebrow on-dark">Healthcare Transformation Intelligence</span>
-          </Reveal>
-
-          <h1 className="word-reveal mt-6 h-display max-w-[17ch] text-white text-[clamp(2.1rem,6.8vw,6.8rem)]">
+          <h1 className="word-reveal mt-0 h-display max-w-[17ch] text-white text-[clamp(2.1rem,6.8vw,6.8rem)]">
             {HEADLINE.map((w, i) => (
               <Fragment key={`${w.text}-${i}`}>
                 <span
