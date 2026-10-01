@@ -1,0 +1,23 @@
+Sub-industry photography — Senior Living & Elder Care (insub_HLTH285, Elyqentra AI).
+Sourced from Unsplash (images.unsplash.com/photo-<id>?w=1600&q=80&fm=jpg) and bundled
+locally; every file was verified HTTP 200 / content-type image/* / >40KB before wiring in.
+Dashboards (p1..p8.webp) come from the Nestack bucket-image API and belong ONLY in the
+Platform / Modules showcase sections — never in the hero.
+
+Files inherited from the design template (all remain valid, human-warmth imagery
+appropriate to a senior-care community; kept in-place to preserve the design system):
+  photo-hero.jpg      hero / atmosphere backdrop
+  photo-family.jpg    intergenerational moment (used in hero)
+  photo-care.jpg      hand-in-hand caregiving moment
+  photo-clinic.jpg    a clinician working with a resident
+  photo-group.jpg     a small group in the common room
+  photo-calm.jpg      quiet, hazy landscape (footer backdrop)
+  photo-session.jpg   two people at a table, quiet moment
+  photo-practice.jpg  contemplative still life
+  photo-spa.jpg       calm interior atmosphere
+  photo-ritual.jpg    still life
+  avatar-1.jpg        care leader portrait
+  avatar-2.jpg        care leader portrait
+  avatar-3.jpg        care leader portrait
+
+Note: source.unsplash.com is DEAD (503) — always use images.unsplash.com/photo-<id>.

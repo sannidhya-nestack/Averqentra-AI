@@ -1,0 +1,38 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# next.js
+/.next/
+/out/
+/build
+next-env.d.ts
+*.tsbuildinfo
+
+# misc
+.DS_Store
+*.pem
+
+# debug logs
+npm-debug.log*
+yarn-debug.log*
+.pnpm-debug.log*
+.logs/
+
+# env & credentials (never commit) — the app needs NO env vars at all
+.env*
+credentials.json
+.claude/.credentials*.json
+
+# pipeline transient markers (never commit)
+.landing-ready
+.review-notes
+agent-outputs/
+.claude-sessions/
+
+# per-run working data pulled from nestack (never commit)
+work/
+
+# vercel
+.vercel
