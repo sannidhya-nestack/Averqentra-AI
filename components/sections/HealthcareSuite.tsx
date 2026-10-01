@@ -43,8 +43,8 @@ const HEALTHCARE_SUITE: HealthcareProduct[] = [
     category: "Healthcare Transformation Intelligence",
     description:
       "Evidence-backed transformation intelligence orchestrating healthcare consulting work from Evidence to Analysis, Recommendation, Execution, and Verified Outcome.",
-    image: "/assets/averqentra-dashboard.png",
-    imageAlt: "Averqentra AI Executive Dashboard",
+    image: "/assets/suite-averqentra.jpg",
+    imageAlt: "Healthcare executive and physician discussing transformation metrics",
     href: "#top",
     users: "Healthcare consulting & hospital teams",
     intake: "ADT, census, staffing & policy extracts",
