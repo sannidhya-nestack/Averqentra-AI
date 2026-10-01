@@ -634,8 +634,8 @@
 /* legibility ramps - top for the nav, bottom for the headline */
 .hero-wash.ramp {
   background:
-    linear-gradient(180deg, rgba(46, 50, 49, 0.42) 0%, rgba(46, 50, 49, 0.10) 22%, rgba(46, 50, 49, 0) 40%),
-    linear-gradient(0deg, rgba(46, 50, 49, 0.66) 0%, rgba(46, 50, 49, 0.28) 26%, rgba(46, 50, 49, 0) 58%);
+    linear-gradient(180deg, rgba(30, 35, 34, 0.75) 0%, rgba(30, 35, 34, 0.40) 25%, rgba(30, 35, 34, 0.15) 50%),
+    linear-gradient(0deg, rgba(30, 35, 34, 0.90) 0%, rgba(30, 35, 34, 0.60) 40%, rgba(30, 35, 34, 0.15) 75%);
 }
 
 /* the thin white arc that sweeps through the reference's hero */
