@@ -5,10 +5,10 @@
  * from that product's compliance / product audit. When an array is empty its
  * section renders NOTHING (the component returns null).
  *
- * Populated here for insub_HLTH285 - Senior Living & Elder Care (Elyqentra AI).
+ * Populated here for insub_HLTH286 - Healthcare Management & Consulting (Averqentra AI).
  *
- * COMPLIANCE - REAL, named standards that genuinely govern a US senior
- *   living / elder care operator and the software that runs it. Nothing
+ * COMPLIANCE - REAL, named standards that govern US healthcare
+ *   organizations and healthcare consulting workflows. Nothing
  *   invented. Info-only: no CTAs, no links-out.
  *
  * PRODUCTS - OUR proprietary connected companion devices (Bluetooth/USB
