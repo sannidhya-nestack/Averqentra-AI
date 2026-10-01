@@ -11,7 +11,7 @@
  * ───────────────────────────────────────────────────────────────────────── */
 
 export const PRODUCT = {
-  insubId: "insub_HLTH890",
+  insubId: "insub_HLTH286",
   name: "Averqentra AI",
   tagline: "AI-Powered Healthcare Transformation Intelligence Platform",
 } as const;

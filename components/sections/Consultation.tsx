@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useSyncExternalStore } from "react";
 import {
   Clock,
   CheckCircle2,
@@ -14,6 +14,7 @@ import {
 import { PRODUCT } from "@/lib/product";
 import {
   getAvailability,
+  getModules,
   createDraft,
   updateDraft,
   book as bookDemo,
@@ -28,18 +29,19 @@ import {
  *   - Right panel:
  *       Step 1: Interactive Date & Time selection calendar (Saturdays and Sundays strictly disabled)
  *       Step 2: User details (name, email, community)
- *       Step 3: Module picker (Resident Intake, Clinical Review, etc.)
+ *       Step 3: Healthcare consulting module picker
  *       Confirmed: Success state
  * ───────────────────────────────────────────────────────────────────────── */
 
 const MODULE_OPTIONS = [
-  "Resident Intake & Admissions",
-  "Clinical Review & Vitals Telemetry",
-  "Care Planning & 42 CFR Compliance",
-  "Workforce Planning & Shift Matching",
-  "Care Operations & e-MAR Verification",
-  "Resident Life & Enrichment",
-  "Quality Control & Survey Audit Readiness",
+  "Dashboard",
+  "Engagement",
+  "Evidence",
+  "Analysis",
+  "Recommendations",
+  "Delivery",
+  "Outcomes",
+  "Assurance",
 ];
 
 // Helper functions for timezone-aware date parsing and formatting
@@ -69,8 +71,22 @@ const formatFullDate = (year: number, month: number, day: number) =>
     day: "numeric",
   });
 
+const subscribeToBrowser = () => () => {};
+const browserReady = () => true;
+const serverReady = () => false;
+
 export default function Consultation() {
+  const ready = useSyncExternalStore(subscribeToBrowser, browserReady, serverReady);
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
+  const [moduleOptions, setModuleOptions] = useState<string[]>(MODULE_OPTIONS);
+
+  useEffect(() => {
+    let cancelled = false;
+    getModules(PRODUCT.insubId).then((modules) => {
+      if (!cancelled && modules.length) setModuleOptions(modules.map((module) => module.label));
+    });
+    return () => { cancelled = true; };
+  }, []);
 
   // Timezone & API Availability
   const [userTz] = useState(getTimezone);
@@ -113,8 +129,8 @@ export default function Consultation() {
   const [company, setCompany] = useState("");
   const [notes, setNotes] = useState("");
   const [selectedModules, setSelectedModules] = useState<string[]>([
-    "Resident Intake & Admissions",
-    "Clinical Review & Vitals Telemetry",
+    "Engagement",
+    "Evidence",
   ]);
 
   const [loading, setLoading] = useState(false);
@@ -199,7 +215,7 @@ export default function Consultation() {
         productName: PRODUCT.name,
         name,
         email,
-        company: company || "Senior Living Community",
+        company: company || "Healthcare Organization",
         sourceUrl: typeof window !== "undefined" ? window.location.href : null,
         sourceHost: typeof window !== "undefined" ? window.location.hostname : null,
       });
@@ -236,7 +252,7 @@ export default function Consultation() {
         somethingElse: notes || null,
         name,
         email,
-        company: company || "Senior Living Community",
+        company: company || "Healthcare Organization",
         startTime: isoStartTime,
         timezone: userTz,
         sessionToken,
@@ -254,6 +270,10 @@ export default function Consultation() {
       prev.includes(mod) ? prev.filter((m) => m !== mod) : [...prev, mod]
     );
   };
+
+  if (!ready) {
+    return <section id="contact" aria-busy="true" className="min-h-80" />;
+  }
 
   return (
     <section id="contact" className="scroll-mt-24 border-t border-[var(--line-2)] bg-[#FAF8F5] py-16 sm:py-28">
@@ -578,7 +598,7 @@ export default function Consultation() {
 
                     <div>
                       <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                        Community / Organization Name
+                        Healthcare Organization Name
                       </label>
                       <input
                         type="text"
@@ -587,7 +607,7 @@ export default function Consultation() {
                         enterKeyHint="next"
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
-                        placeholder="e.g. Meadowbrook Senior Living"
+                        placeholder="e.g. Regional Healthcare Consulting"
                         className="w-full rounded-xl border border-[#e5e7eb] px-4 py-2.5 text-[16px] sm:text-[14px] text-[#111111] outline-none focus:border-[var(--brand)] focus:ring-1 focus:ring-[var(--brand)]"
                       />
                     </div>
@@ -643,7 +663,7 @@ export default function Consultation() {
                   </div>
 
                   <div className="mt-6 space-y-2.5">
-                    {MODULE_OPTIONS.map((mod) => {
+                    {moduleOptions.map((mod) => {
                       const isChecked = selectedModules.includes(mod);
                       return (
                         <label
