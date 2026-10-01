@@ -67,14 +67,14 @@ export default async function Pricing() {
           </h2>
           <p className="mx-auto mt-6 max-w-[52ch] text-[15.5px] leading-[1.7] text-[var(--ink-soft)]">
             A first conversation is often just that - a conversation. From there it
-            is one plan at one price, whichever threads of resident care you hand
-            to {PRODUCT.name}. No per-bed maths, no tiers to decode.
+            is one plan at one price, whichever healthcare transformation workflows you hand
+            to {PRODUCT.name}. No tiers to decode.
           </p>
         </div>
 
         {/* ── the single card, centred beneath ──────────────────────────── */}
         <div className="card mx-auto mt-10 sm:mt-14 w-full max-w-[500px] p-6 sm:p-10">
-          <span className="eyebrow mute">the whole community</span>
+          <span className="eyebrow mute">the whole healthcare organization</span>
 
           <div className="mt-5 flex items-end font-display leading-[0.88] text-[var(--ink)]">
             <span className="text-[clamp(2.6rem,6.5vw,3.9rem)]">$</span>
@@ -86,7 +86,7 @@ export default async function Pricing() {
             </span>
           </div>
           <p className="mt-4 text-[13.5px] leading-[1.6] text-[var(--ink-mute)]">
-            Starting at ${price}/mo - every module, every caregiver, billed monthly.
+            Starting at ${price}/mo - every module, billed monthly.
           </p>
 
           <div className="hair my-8" />

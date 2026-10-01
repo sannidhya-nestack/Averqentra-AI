@@ -658,7 +658,7 @@ export default function Consultation() {
                       Select Modules to Evaluate
                     </h4>
                     <p className="mt-1 text-[13px] text-[#6b7280]">
-                      Pick the care operations workflows you would like demonstrated live.
+                      Pick the healthcare consulting workflows you would like demonstrated live.
                     </p>
                   </div>
 
