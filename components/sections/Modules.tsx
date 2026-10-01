@@ -5,22 +5,12 @@ import { GlowField } from "@/components/Motion";
 /* The dashboard host, derived from the product name - never hard-coded. */
 const HOST = `app.${NAME_PARTS.base.toLowerCase()}.ai`;
 
-/* ── Eight core operational modules of Averqentra AI ───────────────────────
+/* ── Seven core operational modules of Averqentra AI ───────────────────────
  * Evidence → Analysis → Recommendation → Execution → Measurable Outcome
- * The intelligence & orchestration layer for healthcare transformation engagements. */
+ * (Dashboard is showcased in the primary Platform section above) */
 const MODULES = [
   {
-    src: "/assets/averqentra-dashboard.png",
-    label: "Dashboard",
-    path: "/dashboard",
-    title: "Executive command center for transformation engagements.",
-    body: [
-      "The Dashboard provides executive leaders with live insight across all healthcare transformation workstreams. It pairs four core executive KPIs (Discharge Before Noon, Average LOS, Validated Benefit, and Value at Risk) with AI-powered trend forecasting, patient flow unit heatmaps, initiative delivery pulses, and data extraction confidence metrics.",
-    ],
-    fields: ["discharge before noon", "average length of stay", "validated benefit", "value at risk", "patient flow heatmap"],
-  },
-  {
-    src: "/assets/averqentra-engagement.jpg",
+    src: "/assets/averqentra-engagement.png",
     label: "Engagement",
     path: "/engagement",
     title: "The operational setup and control record.",
@@ -30,7 +20,7 @@ const MODULES = [
     fields: ["workstream scope", "baseline kpis", "data request lifecycle", "governance matrix"],
   },
   {
-    src: "/assets/averqentra-evidence.jpg",
+    src: "/assets/averqentra-evidence.png",
     label: "Evidence",
     path: "/evidence",
     title: "Structured evidence intake with 100% source lineage.",
@@ -40,7 +30,7 @@ const MODULES = [
     fields: ["structured extraction", "source lineage", "data validation", "sensitive data masking"],
   },
   {
-    src: "/assets/averqentra-analysis.jpg",
+    src: "/assets/averqentra-analysis.png",
     label: "Analysis",
     path: "/analysis",
     title: "Healthcare KPI engine & root cause matrix.",
@@ -99,7 +89,7 @@ export default function Modules() {
         {/* ── Intro: headline left, warm paragraph set to the right ───────── */}
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.72fr)] lg:items-end lg:gap-16">
           <div>
-            <span className="eyebrow">The 8 Operational Modules</span>
+            <span className="eyebrow">The Operational Modules</span>
             <h2 className="h-section mt-6 max-w-[18ch] text-[clamp(2.1rem,4.4vw,3.5rem)] text-[var(--ink)]">
               Evidence to outcomes, <span className="h-em">orchestrated in one platform</span>.
             </h2>
@@ -111,7 +101,7 @@ export default function Modules() {
 
         <div className="hair mt-14 sm:mt-16" />
 
-        {/* ── Eight module threads (Mobile: swipeable horizontal carousel, Desktop: alternating rhythm) ── */}
+        {/* ── Seven module threads ── */}
         <div className="-mx-4 px-4 sm:-mx-8 sm:px-8 md:mx-0 md:px-0 mt-12 sm:mt-16 md:mt-16 flex md:block overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scrollbar-none pb-6 md:pb-0 gap-6 md:space-y-20 lg:space-y-28">
           {MODULES.map((m, i) => {
             const plateRight = i % 2 === 1;
