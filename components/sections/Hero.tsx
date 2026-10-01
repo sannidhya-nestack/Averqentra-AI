@@ -9,7 +9,7 @@ import { ParallaxImage, Reveal } from "@/components/Motion";
  * HERO - full-bleed opening screen for Averqentra AI.
  * ───────────────────────────────────────────────────────────────────────── */
 
-const HERO_IMAGE = "/assets/photo-family.jpg";
+const HERO_IMAGE = "/assets/photo-consultation.jpg";
 
 const HEADLINE: { text: string; em?: boolean }[] = [
   { text: "AI-Powered" },
@@ -31,7 +31,7 @@ export default function Hero() {
       {/* the photograph drifting behind the type */}
       <ParallaxImage
         src={HERO_IMAGE}
-        alt="Healthcare executives and consulting leaders analyzing operational throughput"
+        alt="Healthcare clinical leaders and medical team reviewing patient cases and operational metrics"
         className="absolute inset-0 h-full w-full"
         mode="self"
         span={380}
