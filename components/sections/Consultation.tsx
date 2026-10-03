@@ -1,5 +1,7 @@
 "use client";
 
+import { getMonthAvailability } from "@/lib/month-availability";
+
 import { useState, useMemo, useEffect, useSyncExternalStore } from "react";
 import {
   Clock,
@@ -13,7 +15,6 @@ import {
 } from "lucide-react";
 import { PRODUCT } from "@/lib/product";
 import {
-  getAvailability,
   getModules,
   createDraft,
   updateDraft,
@@ -94,34 +95,36 @@ export default function Consultation() {
   const [loadingSlots, setLoadingSlots] = useState(true);
 
   // Calendar State
-  const [currentDate, setCurrentDate] = useState(() => new Date(2026, 9, 1)); // Default to October 2026
-  const [selectedDay, setSelectedDay] = useState<number | null>(5); // October 5, 2026 (Monday)
+  const [currentDate, setCurrentDate] = useState(() => new Date(new Date().getFullYear(), new Date().getMonth(), 1)); // Default to October 2026
+  const [selectedDay, setSelectedDay] = useState<number | null>(null); // October 5, 2026 (Monday)
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-  const [selectedTime, setSelectedTime] = useState<string | null>("11:00 AM");
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
   // Load API availability
-  useEffect(() => {
-    getAvailability(userTz).then((data) => {
-      setLoadingSlots(false);
-      if (data && data.length > 0) {
-        setSlots(data);
-        // Automatically align month and day to the first available weekday slot from the real API
-        const firstWeekdaySlot = data.find((s) => {
-          const parsed = parseInTz(s.startTime, userTz);
-          const dow = new Date(parsed.y, parsed.m, parsed.d).getDay();
-          return dow !== 0 && dow !== 6;
-        });
 
-        if (firstWeekdaySlot) {
-          const first = parseInTz(firstWeekdaySlot.startTime, userTz);
-          setCurrentDate(new Date(first.y, first.m, 1));
-          setSelectedDay(first.d);
-          setSelectedSlot(firstWeekdaySlot.startTime);
-          setSelectedTime(formatTimeInTz(firstWeekdaySlot.startTime, userTz));
-        }
-      }
+  // Month navigation owns availability; cleanup rejects responses from older months.
+  const calendarYear = currentDate.getFullYear();
+  const calendarMonthIndex = currentDate.getMonth();
+  const [calendarRevision, setCalendarRevision] = useState(0);
+  useEffect(() => {
+    if (!userTz) return;
+    let cancelled = false;
+    void Promise.resolve().then(async () => {
+      if (cancelled) return;
+      setSlots([]);
+      setLoadingSlots(true);
+      setSelectedDay(null);
+      setSelectedSlot(null);
+      setSelectedTime(null);
+      const nextSlots = await getMonthAvailability(userTz, calendarYear, calendarMonthIndex);
+      if (cancelled) return;
+      setSlots(nextSlots);
+      setLoadingSlots(false);
     });
-  }, [userTz]);
+
+    return () => { cancelled = true;  };
+  }, [calendarYear, calendarMonthIndex, userTz, calendarRevision]);
+
 
   // Form State
   const [name, setName] = useState("");
