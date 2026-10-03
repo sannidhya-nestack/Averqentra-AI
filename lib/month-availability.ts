@@ -1,3 +1,14 @@
+import { useSyncExternalStore } from "react";
+
+const subscribe = () => () => {};
+const clientSnapshot = () => true;
+const serverSnapshot = () => false;
+
+/** Keep browser-local dates and timezone labels out of the server snapshot. */
+export function useCalendarBrowserReady(): boolean {
+  return useSyncExternalStore(subscribe, clientSnapshot, serverSnapshot);
+}
+
 export type CalendarSlot = { startTime: string; spotsLeft: number | null };
 
 /** Convert midnight in the booking timezone to UTC, including DST offsets. */

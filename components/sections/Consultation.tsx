@@ -441,7 +441,7 @@ export default function Consultation() {
                         // In the real calendar API, Saturdays and Sundays have 0 slots.
                         // We strictly disable weekends under all conditions, as well as past dates or days with no available slots.
                         const hasSlots = availableDays.has(day);
-                        const isEnabled = !isWeekend && !isPast && (slots.length === 0 || hasSlots);
+                        const isEnabled = !isWeekend && !isPast && hasSlots;
                         const isSelected = selectedDay === day && isEnabled;
 
                         return (
@@ -457,8 +457,8 @@ export default function Consultation() {
                                     setSelectedDay(day);
                                     const daySlots = slotsByDay.get(day) ?? [];
                                     if (daySlots.length > 0) {
-                                      setSelectedSlot(daySlots[0].startTime);
-                                      setSelectedTime(formatTimeInTz(daySlots[0].startTime, userTz));
+                                      setSelectedSlot(null);
+                                      setSelectedTime(null);
                                     } else {
                                       setSelectedSlot(null);
                                       setSelectedTime(null);
